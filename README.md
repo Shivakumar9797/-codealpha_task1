@@ -1,9 +1,28 @@
-# -codealpha_task1
-Name: SHIVA KUMAR KONDA Company:codealpha ID:CA/SE1/11793 Domain:python Duration:20 oct 2025 Overview of the task:This is a simple Python-based Hangman game.
-It is a classic word-guessing game where the player has to guess the word by suggesting letters within a limited number of attempts.
-*Features:
-Random word selection
-User-friendly input system
-Tracks correct and incorrect guesses
-Shows remaining attempts
-Ends with a win or lose message
+/* Hangman*/
+import random
+
+words = ["python", "java", "computer", "keyboard", "programming"]
+word = random.choice(words)
+guessed = ["_"] * len(word)
+tries = 6
+
+print("Welcome to Hangman Game!")
+
+while tries > 0 and "_" in guessed:
+    print("\nWord:", " ".join(guessed))
+    print("Chances left:", tries)
+    guess = input("Enter a letter: ").lower()
+
+    if guess in word:
+        for i in range(len(word)):
+            if word[i] == guess:
+                guessed[i] = guess
+        print("Correct guess!")
+    else:
+        tries -= 1
+        print("Wrong guess!")
+
+if "_" not in guessed:
+    print("\nYou Won! 🎉 The word was:", word)
+else:
+    print("\nGame Over 💀 The word was:", word)
